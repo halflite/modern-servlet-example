@@ -11,6 +11,7 @@
 	<properties>
 		<guice.version>4.2.2</guice.version>
 		<jetty.version>9.4.14.v20181114</jetty.version>
+		<logback.version>1.2.3</logback.version>
 	</properties>
 	<dependencies>
 		<!-- Jetty -->
@@ -56,6 +57,22 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
+		</dependency>
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback.version}</version>
 		</dependency>
 		<!-- testing -->
 		<dependency>
