@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 
+import org.webjars.servlet.WebjarsServlet;
+
 import com.google.common.collect.ImmutableMap;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -25,10 +27,12 @@ public class AppContextListener extends GuiceServletContextListener {
         protected void configureServlets() {
             install(new AppModule());
 
+            bind(WebjarsServlet.class).in(Singleton.class);
             bind(FreemarkerServlet.class).in(Singleton.class);
 
             serve("/").with(IndexServlet.class);
-            Map<String, String> initParam = ImmutableMap.<String, String> builder()
+            serve("/webjars/*").with(WebjarsServlet.class);
+            Map<String, String> fmInitParam = ImmutableMap.<String, String> builder()
                     .put("TemplatePath", "classpath:views")
                     .put("NoCache", "true")
                     .put("ResponseCharacterEncoding", "fromTemplate")
@@ -41,7 +45,7 @@ public class AppContextListener extends GuiceServletContextListener {
                     .put("locale", "ja_JP")
                     .put("number_format", "0.##########")
                     .build();
-            serve("*.ftl").with(FreemarkerServlet.class, initParam);
+            serve("*.ftl").with(FreemarkerServlet.class, fmInitParam);
         }
     }
 }

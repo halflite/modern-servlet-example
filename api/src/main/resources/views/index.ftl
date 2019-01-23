@@ -8,7 +8,7 @@
     <meta name="description" content="modern-servlet-example">
     <meta name="author" content="halflite.net">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/webjars/bootswatch-solar/4.1.3/bootstrap.min.css">
     <link rel="shortcut icon" href="">
 </head>
 
