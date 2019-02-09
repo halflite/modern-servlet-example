@@ -11,6 +11,7 @@
 	<properties>
 		<guice.version>4.2.2</guice.version>
 		<jetty.version>9.4.14.v20181114</jetty.version>
+		<mysql.version>8.0.15</mysql.version>
 		<logback.version>1.2.3</logback.version>
 
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -20,6 +21,11 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<site.encoding>UTF-8</site.encoding>
 		<jacoco.include.package>net.halflite.example.api.*</jacoco.include.package>
+
+        <flyway.url>jdbc:mysql://192.168.33.11:3306/exampledb?useSSL=false</flyway.url>
+        <flyway.user>dbuser</flyway.user>
+        <flyway.password>dbpassword1</flyway.password>
+        <flyway.locations>filesystem:${project.basedir}/db/migration</flyway.locations>
 	</properties>
 	<dependencies>
 		<!-- Jetty -->
@@ -49,6 +55,12 @@
 			<groupId>com.google.inject.extensions</groupId>
 			<artifactId>guice-servlet</artifactId>
 			<version>${guice.version}</version>
+		</dependency>
+		<!-- MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
 		</dependency>
 		<!-- FreeMarker Template -->
 		<dependency>
@@ -127,6 +139,19 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<!-- flyway -->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<version>5.2.4</version>
+				<dependencies>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>${mysql.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
 			<!-- Eclipse -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
