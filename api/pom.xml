@@ -11,6 +11,7 @@
 	<properties>
 		<guice.version>4.2.2</guice.version>
 		<jetty.version>9.4.14.v20181114</jetty.version>
+		<doma.version>2.23.0</doma.version>
 		<mysql.version>8.0.15</mysql.version>
 		<logback.version>1.2.3</logback.version>
 
@@ -22,10 +23,10 @@
 		<site.encoding>UTF-8</site.encoding>
 		<jacoco.include.package>net.halflite.example.api.*</jacoco.include.package>
 
-        <flyway.url>jdbc:mysql://192.168.33.11:3306/exampledb?useSSL=false</flyway.url>
-        <flyway.user>dbuser</flyway.user>
-        <flyway.password>dbpassword1</flyway.password>
-        <flyway.locations>filesystem:${project.basedir}/db/migration</flyway.locations>
+		<flyway.url>jdbc:mysql://192.168.33.11:3306/exampledb?useSSL=false</flyway.url>
+		<flyway.user>dbuser</flyway.user>
+		<flyway.password>dbpassword1</flyway.password>
+		<flyway.locations>filesystem:${project.basedir}/db/migration</flyway.locations>
 	</properties>
 	<dependencies>
 		<!-- Jetty -->
@@ -56,6 +57,23 @@
 			<artifactId>guice-servlet</artifactId>
 			<version>${guice.version}</version>
 		</dependency>
+		<!-- Doma -->
+		<dependency>
+			<groupId>org.seasar.doma</groupId>
+			<artifactId>doma</artifactId>
+			<version>${doma.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.seasar.doma</groupId>
+			<artifactId>doma-gen</artifactId>
+			<version>2.23.0</version>
+		</dependency>
+		<!-- Hikari CP -->
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>3.3.0</version>
+		</dependency>
 		<!-- MySQL -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -78,6 +96,12 @@
 			<groupId>org.webjars</groupId>
 			<artifactId>bootswatch-solar</artifactId>
 			<version>4.1.3</version>
+		</dependency>
+		<!-- TypeSafe Config -->
+		<dependency>
+			<groupId>com.typesafe</groupId>
+			<artifactId>config</artifactId>
+			<version>1.3.3</version>
 		</dependency>
 		<!-- Utils -->
 		<dependency>
