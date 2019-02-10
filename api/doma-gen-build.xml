@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<project
+    name="doma-gen"
+    default="gen"
+    basedir=".">
+
+	<!-- エンティティ、DAOが作成されるルート -->
+	<property
+        name="javaDestDir"
+        value="src/main/java/" />
+	<!-- SQLファイルが作成されるルート -->
+	<property
+        name="sqlDestDir"
+        value="src/main/resources/" />
+	<!-- 利用するデータベース -->
+	<property
+        name="dialectName"
+        value="mysql" />
+	<!-- jdbcドライバ -->
+	<property
+	    name="driverClassName"
+        value="com.mysql.cj.jdbc.Driver" />
+	<!-- 接続先 -->
+	<property
+        name="url"
+        value="jdbc:mysql://192.168.33.11:3306/exampledb?useSSL=false&amp;nullNamePatternMatchesAll=true" />
+	<!-- ユーザー -->
+	<property
+        name="user"
+        value="dbuser" />
+	<!-- パスワード -->
+	<property
+        name="password"
+        value="dbpassword1" />
+	<!-- エンティティが作成されるパッケージ -->
+	<property
+        name="entityPackageName"
+        value="net.halflite.example.api.entity" />
+	<!-- DAOが作成されるパッケージ -->
+	<property
+        name="daoPackageName"
+        value="net.halflite.example.api.dao" />
+	<!-- SQLファイルが作成されるフォルダ -->
+	<property
+        name="sqlFilePattern"
+        value="META-INF/**/*.sql" />
+	<!-- エンティティを上書きする -->
+	<property
+	    name="overwrite"
+	    value="false" />
+	<!-- Daoを作成する -->
+	<property
+	    name="genarateDao"
+	    value="true" />
+	<!-- エンティティリスナーを上書きする -->
+	<property
+	    name="overwriteListener"
+	    value="false" />
+	<!-- エンティティ命名則 -->
+	<property
+	    name="namingType"
+	    value="snake_lower_case" />
+	<!-- エンティティリスナーを作成する -->
+	<property
+	    name="useListener"
+	    value="false" />
+
+	<path id="classpath">
+		<fileset dir="target/dependency" />
+	</path>
+
+	<taskdef
+        name="gen"
+        classname="org.seasar.doma.extension.gen.task.Gen"
+        classpathref="classpath"
+        loaderref="loader" />
+	<typedef
+        name="entityConfig"
+        classname="org.seasar.doma.extension.gen.task.EntityConfig"
+        loaderref="loader" />
+	<typedef
+        name="daoConfig"
+        classname="org.seasar.doma.extension.gen.task.DaoConfig"
+        loaderref="loader" />
+	<typedef
+        name="sqlConfig"
+        classname="org.seasar.doma.extension.gen.task.SqlConfig"
+        loaderref="loader" />
+
+	<target name="gen">
+		<gen
+            dialectName="${dialectName}"
+            driverClassName="${driverClassName}"
+            url="${url}"
+            user="${user}"
+            password="${password}"
+            templatePrimaryDir="db/template">
+			<entityConfig
+                destdir="${javaDestDir}"
+                packageName="${entityPackageName}"
+                overwrite="${overwrite}"
+        	    overwriteListener="${overwriteListener}" 
+        	    namingType="${namingType}"
+				useListener="${useListener}"/>
+			<daoConfig
+                destdir="${javaDestDir}"
+                packageName="${daoPackageName}"
+				generate="${genarateDao}"/>
+			<sqlConfig destdir="${sqlDestDir}"
+                overwrite="${overwrite}"/>
+		</gen>
+	</target>
+
+</project>

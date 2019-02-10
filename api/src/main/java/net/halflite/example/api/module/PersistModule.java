@@ -8,6 +8,7 @@ import org.seasar.doma.jdbc.dialect.MysqlDialect;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.typesafe.config.Config;
 import com.zaxxer.hikari.HikariDataSource;
 
 import net.halflite.example.api.config.PersistConfig;
@@ -23,7 +24,7 @@ public class PersistModule extends AbstractModule {
 
     @Provides
     @Singleton
-    public DataSource provideDataSource(com.typesafe.config.Config config) {
+    public DataSource provideDataSource(Config config) {
         HikariDataSource ds = new HikariDataSource();
         ds.setJdbcUrl(config.getString("db.url"));
         ds.setUsername(config.getString("db.user"));
