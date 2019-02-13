@@ -11,6 +11,7 @@ import com.google.inject.servlet.ServletModule;
 
 import freemarker.ext.servlet.FreemarkerServlet;
 import net.halflite.example.api.servlet.IndexServlet;
+import net.halflite.example.api.servlet.UserServlet;
 
 public class AppServletModule extends ServletModule {
     
@@ -22,6 +23,8 @@ public class AppServletModule extends ServletModule {
         bind(FreemarkerServlet.class).in(Singleton.class);
 
         serve("/").with(IndexServlet.class);
+        serveRegex("/user/\\d+$").with(UserServlet.class);
+        
         serve("/webjars/*").with(WebjarsServlet.class);
         Map<String, String> fmInitParam = ImmutableMap.<String, String> builder()
                 .put("TemplatePath", "classpath:views")

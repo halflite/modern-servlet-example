@@ -1,5 +1,8 @@
 package net.halflite.example.api.dao;
 
+import java.util.Map;
+import java.util.Optional;
+
 import org.seasar.doma.Dao;
 import org.seasar.doma.Delete;
 import org.seasar.doma.Insert;
@@ -25,6 +28,14 @@ public interface AccountDao {
     @Select
     Account selectById(Long id);
 
+    /** 
+     * 
+     * @param id
+     * @return Optional Record
+     */
+    @Select
+    Optional<Map<String, Object>> selectAccountAndAdminById(Long id);
+    
     /**
      * @param entity
      * @return affected rows

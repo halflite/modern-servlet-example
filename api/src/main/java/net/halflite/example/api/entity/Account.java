@@ -1,6 +1,7 @@
 package net.halflite.example.api.entity;
 
 import java.time.LocalDateTime;
+
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
@@ -8,6 +9,8 @@ import org.seasar.doma.GenerationType;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 import org.seasar.doma.jdbc.entity.NamingType;
+
+import net.halflite.example.api.type.AccountStatusType;
 
 /**
  * 
@@ -37,7 +40,7 @@ public class Account {
 
     /** 状態 */
     @Column(name = "status")
-    String status;
+    AccountStatusType status;
 
     /** 更新日時 */
     @Column(name = "modified")
@@ -124,7 +127,7 @@ public class Account {
      * 
      * @return the status
      */
-    public String getStatus() {
+    public AccountStatusType getStatus() {
         return status;
     }
 
@@ -133,7 +136,7 @@ public class Account {
      * 
      * @param status the status
      */
-    public void setStatus(String status) {
+    public void setStatus(AccountStatusType status) {
         this.status = status;
     }
 

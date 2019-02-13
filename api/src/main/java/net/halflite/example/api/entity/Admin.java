@@ -1,6 +1,7 @@
 package net.halflite.example.api.entity;
 
 import java.time.LocalDateTime;
+
 import org.seasar.doma.Column;
 import org.seasar.doma.Entity;
 import org.seasar.doma.GeneratedValue;
@@ -8,6 +9,8 @@ import org.seasar.doma.GenerationType;
 import org.seasar.doma.Id;
 import org.seasar.doma.Table;
 import org.seasar.doma.jdbc.entity.NamingType;
+
+import net.halflite.example.api.type.AdminDivisionType;
 
 /**
  * 
@@ -29,7 +32,7 @@ public class Admin {
 
     /** 役割 */
     @Column(name = "division")
-    String division;
+    AdminDivisionType division;
 
     /** 更新日時 */
     @Column(name = "modified")
@@ -80,7 +83,7 @@ public class Admin {
      * 
      * @return the division
      */
-    public String getDivision() {
+    public AdminDivisionType getDivision() {
         return division;
     }
 
@@ -89,7 +92,7 @@ public class Admin {
      * 
      * @param division the division
      */
-    public void setDivision(String division) {
+    public void setDivision(AdminDivisionType division) {
         this.division = division;
     }
 
