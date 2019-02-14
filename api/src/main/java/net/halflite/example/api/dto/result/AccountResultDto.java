@@ -42,11 +42,13 @@ public class AccountResultDto {
     }
 
     public String getStatus() {
-        return status.name();
+        return status.getValue();
     }
 
     public String getDivision() {
-        return division.name();
+        return Optional.ofNullable(division)
+                .map(AdminDivisionType::name)
+                .orElse(null);
     }
 
     public AccountResultDto(Long id, String email, String displayName, AccountStatusType status, AdminDivisionType division) {
