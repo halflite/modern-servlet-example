@@ -1,0 +1,19 @@
+LOCK TABLES `admin` WRITE; 
+
+/*!40000 ALTER TABLE `admin` DISABLE KEYS */
+; 
+
+INSERT 
+INTO `admin` 
+VALUES ( 
+  1
+  , 2
+  , 'EDITOR'
+  , '2019-02-01 00:00:01'
+  , '2019-02-01 00:00:01'
+); 
+
+/*!40000 ALTER TABLE `admin` ENABLE KEYS */
+; 
+
+UNLOCK TABLES; 
